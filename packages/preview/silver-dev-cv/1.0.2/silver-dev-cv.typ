@@ -127,15 +127,20 @@
 
 // show contact details
 #let display(contacts) = {
-  set text(10pt, fill: headings-colour , weight: "regular", top-edge: "baseline", bottom-edge: "baseline", baseline: 2pt)
-  contacts
-    .map(contact => {
-        if ("link" in contact) {
-          link(contact.link)[#contact.text]
-        } else {
-          [#contact.text]
-        })
-    .join(" | ")
+  block(
+    spacing: 8pt,
+    {
+      set text(10pt, fill: headings-colour, weight: "regular")
+      contacts
+        .map(contact =>
+            if ("link" in contact) {
+              link(contact.link)[#contact.text]
+            } else {
+              [#contact.text]
+            })
+        .join(" | ")
+    }
+  )
 }
 
 #let cv(
